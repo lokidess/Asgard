@@ -13,8 +13,8 @@ class UserProfileForm(forms.ModelForm):
 			'age',
 			'age_for_search',
 			'interests',
-			# 'email',
-			# 'movie_preferences',
-			# 'literature_preferences',
-			# 'music_preferences',
+			'email',
+			'movie_preferences',
+			'literature_preferences',
+			'music_preferences',
 		]
