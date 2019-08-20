@@ -1,0 +1,43 @@
+{% load bootstrap4 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  	<a class="navbar-brand" href="#">Dating</a>
+  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+  	</button>
+
+  	<div class="collapse navbar-collapse" id="navbar1">
+    	<ul class="navbar-nav mr-auto">
+      		<li class="nav-item {% if request.resolver_match.url_name == 'home' %} active {% endif %}">
+        		<a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+      		</li>
+			{% if user.is_authenticated %}
+			<li class="nav-item dropdown">
+        		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User: {{user.get_username}}</a>
+        		<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+          			<a class="dropdown-item" href="{% url 'add_profile' %}">Update profile</a>
+          			<a class="dropdown-item" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+          			<div class="dropdown-divider"></div>
+          			<a class="dropdown-item" href="#">Something else here</a>
+        		</div>
+      		</li>
+			{% else %}
+			<li class="nav-item {% if request.resolver_match.url_name == 'login' %} active {% endif %}">
+        			<a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login <span class="sr-only">(current)</span></a>
+			</li>
+			{% endif %}
+    	</ul>
+    	<form class="form-inline my-2 my-lg-0">
+      		<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      		<button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+    	</form>
+  	</div>
+</nav>
+
+{% block content %}
+
+{% endblock %}
+
