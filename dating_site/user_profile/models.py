@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from multiselectfield import MultiSelectField
-from django.contrib.auth import get_user_model
 from .user_preferences import MOVIE_PREFERENCES, CHOICES_GENDER, MUSIC_PREFERENCES, AGE_CHOICES, LITERATURE_PREFERENCES
 
 # Create your models here.
@@ -9,10 +8,6 @@ from .user_preferences import MOVIE_PREFERENCES, CHOICES_GENDER, MUSIC_PREFERENC
 
 class MyUser(AbstractUser):
     about_myself = models.TextField(blank=True)
-
-
-class UserProfile(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=255)
     avatar = models.ImageField(upload_to='images/')
     age = models.IntegerField(default=25)
@@ -28,3 +23,4 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.name
+
