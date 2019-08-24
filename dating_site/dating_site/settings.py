@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 	'multiselectfield',
 	'bootstrap4',
-    'user_profile'
+    'user_profile',
 ]
 
 MIDDLEWARE = [
