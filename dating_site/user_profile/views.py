@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.shortcuts import render, reverse
+from django.views.generic import ListView, CreateView, UpdateView
 from .models import MyUser
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
@@ -13,8 +13,16 @@ class HomePageView(ListView):
     template_name = 'home.html'
 
 
-class CreateUserProfileView(CreateView):
+class UpdateUserProfileView(UpdateView):
     model = get_user_model()
     form_class = UserProfileForm
     template_name = 'user_profile.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('user_detail')
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+
+class UserDetailView(ListView):
+    model = get_user_model()
+    template_name = 'user_detail.html'

@@ -1,10 +1,11 @@
 from django import forms
 from .models import MyUser
+from django.contrib.auth import get_user_model
 
 
 class UserProfileForm(forms.ModelForm):
 	class Meta:
-		model = MyUser
+		model = get_user_model()
 		fields = [
 			'name',
 			'avatar',
