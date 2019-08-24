@@ -1,8 +1,6 @@
 from django import forms
-from .models import UserProfile
 from .models import MyUser
 from django.contrib.auth import get_user_model
-
 from .user_preferences import MOVIE_PREFERENCES, CHOICES_GENDER, MUSIC_PREFERENCES, AGE_CHOICES, LITERATURE_PREFERENCES
 
 
@@ -37,3 +35,22 @@ class UserRegisterForm(forms.ModelForm):
             'interests': forms.Textarea(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
+
+class UserProfileForm(forms.ModelForm):
+	class Meta:
+		model = get_user_model()
+		fields = [
+			'name',
+			'avatar',
+			'gender',
+			'gender_for_search',
+			'age',
+			'age_for_search',
+			'interests',
+			'email',
+			'movie_preferences',
+			'literature_preferences',
+			'music_preferences',
+		]
+
+
