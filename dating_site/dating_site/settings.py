@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 	'multiselectfield',
 	'bootstrap4',
     'user_profile',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -130,3 +132,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',          # authorization backend from Google
+    'django.contrib.auth.backends.ModelBackend', # classic authorization backend
+)
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+# Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '921911637200-gk8io22krvqbcjmgdami0v4sipq66nbj.apps.googleusercontent.com'
+# Google Consumer Secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '4_GwMYzCCUtwRIlCokkhH1m-'

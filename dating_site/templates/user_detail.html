@@ -6,7 +6,12 @@
         <div class="col-sm-6">
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card text-center" style="width: 30rem;">
-                    <img src="{{ user.avatar.url }}" class="card-img-top" alt="{{ user.name }}">
+                    {% if user.avatar %}
+                        <img src="{{ user.avatar.url }}" class="card-img-top" alt="{{ user.name }}">
+                     {% elif user.avatar %}
+                        <img src="static/ava_default.png" class="card-img-top" alt="{{ user.name }}">
+                     {% endif %}
+
                     <div class="card-body text-white bg-dark mb-3">
                         <p class="card-text">My interests: {{ user.interests }}</p>
                         <p class="card-text">I am {{ user.age }} years old</p>
