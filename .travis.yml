@@ -4,4 +4,5 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - python lokidess/Asgard/manage.py test
+  - ls
+  - python manage.py test
